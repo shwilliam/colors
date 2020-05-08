@@ -1,6 +1,6 @@
 import React, {useLayoutEffect, useRef} from 'react'
 import VisuallyHidden from '@reach/visually-hidden'
-import {Color, ColorPreview, Slider} from './components'
+import {Color, ColorPicker, Slider} from './components'
 import {useColors} from './hooks'
 import {preventDefault} from './utils'
 
@@ -8,11 +8,11 @@ export const App = () => {
   const colorInputRef = useRef()
   const {
     colors,
-    setBaseColor,
     baseColor,
     count,
     rotation,
     lightness,
+    setBaseColor,
     setColorAmount,
     setColorRotation,
     setColorLightness,
@@ -44,7 +44,12 @@ export const App = () => {
             <VisuallyHidden>Base color</VisuallyHidden>
 
             <div className="input-container">
-              <ColorPreview color={baseColor} className="input-icon" />
+              {/* TODO: color picker */}
+              <ColorPicker
+                color={baseColor}
+                onChange={setBaseColor}
+                className="input-icon"
+              />
               <input
                 ref={colorInputRef}
                 className="input input--icon"

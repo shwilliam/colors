@@ -1,5 +1,5 @@
 export * from './circle'
 export * from './color'
-export * from './color-preview'
+export * from './color-picker'
 export * from './slider'
 export * from './tooltip'
