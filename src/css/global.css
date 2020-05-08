@@ -1,8 +1,8 @@
 :root {
   --color__bg: #fafafa;
-  --color__ui: #222;
+  --color__ui: #333;
   --color__ui--secondary: #444;
-  --color__font: #333;
+  --color__font: #222;
   --color__font--secondary: #666;
 }
 
@@ -14,6 +14,25 @@ body,
   text-transform: uppercase;
   background-color: var(--color__bg);
   color: var(--color__font);
+  height: 100%;
+}
+
+.site {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.site__header {
+  text-align: center;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  padding-top: 40px;
+}
+
+.site__main {
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }
 
@@ -86,14 +105,8 @@ body,
   width: 22px;
 }
 
-.site__container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
 .wheel__container {
-  min-height: 400px;
+  min-height: 320px;
   flex-basis: 100%;
   display: flex;
   justify-content: center;
@@ -113,6 +126,8 @@ body,
 }
 
 .options__form {
+  width: 90%;
+  margin: 0 auto;
   text-align: center;
   padding: 1rem;
 }
@@ -149,10 +164,6 @@ body,
   border-radius: 3px;
 }
 
-.options__submit {
-  margin: 1rem 0 0.5rem 0;
-}
-
 .color__copied-label {
   width: 50px;
   height: 50px;
@@ -172,14 +183,17 @@ body,
 }
 
 @media only screen and (min-width: 800px) {
-  .site__container {
+  .site__main {
     flex-direction: row-reverse;
     align-items: center;
+    min-height: 400px;
   }
 
   .options__form {
+    position: relative;
+    top: -25px;
     width: 500px;
-    margin: 0 50px;
+    margin: 0 20px 0 calc(15% + 20px);
   }
 
   .slider__handle {
