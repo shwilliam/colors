@@ -27,7 +27,8 @@ body,
   text-align: center;
   font-size: 1.3rem;
   letter-spacing: 1px;
-  padding-top: 40px;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
 .site__main {
@@ -106,7 +107,9 @@ body,
 }
 
 .wheel__container {
-  min-height: 320px;
+  position: relative;
+  top: 20px;
+  min-height: 280px;
   flex-basis: 100%;
   display: flex;
   justify-content: center;
@@ -182,6 +185,13 @@ body,
   z-index: 999;
 }
 
+@media only screen and (min-width: 400px) {
+  .site__header {
+    padding-top: 40px;
+    padding-bottom: 0;
+  }
+}
+
 @media only screen and (min-width: 800px) {
   .site__main {
     flex-direction: row-reverse;
@@ -191,7 +201,7 @@ body,
 
   .options__form {
     position: relative;
-    top: -25px;
+    top: -15px;
     width: 500px;
     margin: 0 20px 0 calc(15% + 20px);
   }
