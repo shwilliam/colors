@@ -67,7 +67,6 @@ export const App = () => {
             <Slider
               min={1}
               max={180}
-              step={0.25}
               value={rotation}
               onChange={setColorRotation}
             />
