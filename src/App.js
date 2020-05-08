@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useLayoutEffect, useRef} from 'react'
 import VisuallyHidden from '@reach/visually-hidden'
 import {Color, ColorPreview, Slider} from './components'
 import {useColors} from './hooks'
 import {preventDefault} from './utils'
 
 export const App = () => {
+  const colorInputRef = useRef()
   const {
     colors,
     setBaseColor,
@@ -18,6 +19,10 @@ export const App = () => {
   } = useColors('.wheel__circle')
 
   const handleColorInputChange = e => setBaseColor(e.target.value)
+
+  useLayoutEffect(() => {
+    colorInputRef?.current.focus()
+  }, [])
 
   return (
     <div className="site">
@@ -41,6 +46,7 @@ export const App = () => {
             <div className="input-container">
               <ColorPreview color={baseColor} className="input-icon" />
               <input
+                ref={colorInputRef}
                 className="input input--icon"
                 type="text"
                 value={baseColor}
