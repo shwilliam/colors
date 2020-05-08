@@ -1,7 +1,8 @@
 import {useContext, useEffect} from 'react'
 import {ColorsContext} from '../context'
 
-const WHEEL_CIRCLE_SIZE = 120
+// TODO: refactor to measure dom el
+const WHEEL_CIRCLE_SIZE = 60
 
 export const useColors = circleSelector => {
   const {

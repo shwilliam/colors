@@ -15,9 +15,12 @@
   },
   "homepage": "https://github.com/shwilliam/colors#readme",
   "dependencies": {
+    "@reach/alert": "^0.10.1",
     "@reach/slider": "^0.10.1",
     "@reach/tooltip": "^0.10.1",
+    "@reach/visually-hidden": "^0.10.1",
     "color": "^3.1.2",
+    "copy-to-clipboard": "^3.3.1",
     "parcel-bundler": "^1.12.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
