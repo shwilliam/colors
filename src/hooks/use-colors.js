@@ -32,7 +32,7 @@ export const useColors = circleSelector => {
     elems.forEach(el => {
       const x =
         100 * Math.cos(angleOffset) +
-        (width - (width > 800 ? 500 : 0) - WHEEL_CIRCLE_SIZE) / 2
+        (width - (width > 799 ? 500 : 0) - WHEEL_CIRCLE_SIZE) / 2
       const y = 100 * Math.sin(angleOffset) - 50
       el.style.position = 'absolute'
       el.style.left = x + 'px'
