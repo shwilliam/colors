@@ -10,7 +10,7 @@ const generateColors = (hex, amount, rotation, lightness) =>
       .rotate(((i + i) / (amount + 1)) * rotation)
       .lighten(lightness > 0.5 ? (lightness - 0.5) / 0.5 : 0)
       .darken(lightness < 0.5 ? 1 - lightness / 0.5 : 0)
-      .string(),
+      .hex(),
   )
 
 const stateReducer = (state, action) => {

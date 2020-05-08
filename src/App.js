@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
+import {Circle, Slider, Tooltip} from './components'
 import {useColors} from './hooks'
-import {Circle, Slider} from './components'
 
 export const App = () => {
   const {
@@ -81,7 +81,9 @@ export const App = () => {
       <ul className="wheel">
         {colors.map((color, i) => (
           <li key={i} className="wheel__circle">
-            <Circle fill={color} />
+            <Tooltip label={color}>
+              <Circle fill={color} />
+            </Tooltip>
           </li>
         ))}
       </ul>
