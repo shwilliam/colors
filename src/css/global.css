@@ -1,3 +1,43 @@
+:root {
+  --color__bg: #fafafa;
+  --color__ui: #0b59a3;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: var(--color__bg);
+  color: var(--color__ui);
+  font-weight: 600;
+}
+
+.button,
+.input {
+  font: inherit;
+  border: 2px solid var(--color__ui);
+  border-radius: 3px;
+  font-weight: 400;
+}
+
+.button {
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: var(--color__ui);
+  color: var(--color__bg);
+  padding: 0.25rem 0.75rem 0.125rem 0.75rem;
+}
+
+.input {
+  width: 100%;
+  background-color: var(--color__bg);
+  padding: 0.35rem 0.5rem 0.3rem 0.5rem;
+}
+
+[data-reach-slider-input][data-orientation="horizontal"].slider {
+  width: 100%;
+}
+
 .wheel {
   margin: 0;
   padding: 0;
@@ -7,4 +47,30 @@
 
 .wheel__circle {
   width: 120px;
+}
+
+.options__form {
+  text-align: center;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-top: 2px solid var(--color__ui);
+  padding: 1rem;
+}
+
+.options__input-container {
+  display: flex;
+  align-items: center;
+  height: 1rem;
+  padding: 1rem 0;
+}
+
+.options__label {
+  padding-right: 1rem;
+  white-space: nowrap;
+}
+
+.options__submit {
+  margin: 1rem 0 0.5rem 0;
 }

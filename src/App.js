@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {useColors} from './hooks'
-import {Circle} from './components'
+import {Circle, Slider} from './components'
 
 export const App = () => {
   const {colors, setBaseColor, setColorAmount, setColorRotation} = useColors(
@@ -18,47 +18,45 @@ export const App = () => {
   }
 
   const handleColorInputChange = e => setColorInput(e.target.value)
-  const handleColorAmountInputChange = e =>
-    setColorAmountInput(Number(e.target.value))
-  const handleColorRotationInputChange = e =>
-    setColorRotationInput(Number(e.target.value))
 
   return (
     <>
-      <form onSubmit={handleColorSubmit}>
-        <label>
-          Base color:
+      <form onSubmit={handleColorSubmit} className="options__form">
+        <label className="options__input-container">
+          <span className="options__label">Base color:</span>
           <input
+            className="input"
             type="text"
             value={colorInput}
             onChange={handleColorInputChange}
             placeholder="#663399"
+            required
           />
         </label>
 
-        <label>
-          Color amount:
-          <input
-            type="number"
-            min="2"
+        <label className="options__input-container">
+          <span className="options__label">Colors:</span>
+          <Slider
+            min={2}
+            max={20}
             value={colorAmountInput}
-            onChange={handleColorAmountInputChange}
-            placeholder="8"
+            onChange={setColorAmountInput}
           />
         </label>
 
-        <label>
-          Rotation:
-          <input
-            type="number"
-            min="1"
+        <label className="options__input-container">
+          <span className="options__label">Rotation:</span>
+          <Slider
+            min={1}
+            max={180}
             value={colorRotationInput}
-            onChange={handleColorRotationInputChange}
-            placeholder="100"
+            onChange={setColorRotationInput}
           />
         </label>
 
-        <button type="submit">Update</button>
+        <button type="submit" className="button options__submit">
+          Update
+        </button>
       </form>
 
       <ul className="wheel">
