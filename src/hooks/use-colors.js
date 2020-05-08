@@ -4,7 +4,9 @@ import {ColorsContext} from '../context'
 const WHEEL_CIRCLE_SIZE = 120
 
 export const useColors = circleSelector => {
-  const {colors, setBaseColor} = useContext(ColorsContext)
+  const {colors, setBaseColor, setColorAmount, setColorRotation} = useContext(
+    ColorsContext,
+  )
 
   // wheel layout
   // TODO: fade in after layout
@@ -25,5 +27,5 @@ export const useColors = circleSelector => {
     })
   }, [colors])
 
-  return {colors, setBaseColor}
+  return {colors, setBaseColor, setColorAmount, setColorRotation}
 }

@@ -1,9 +1,6 @@
-import React, {useReducer} from 'react'
+import React, {useReducer, useMemo} from 'react'
 import color from 'color'
 import {ColorsContext} from './context'
-
-const COLOR_AMOUNT = 8
-const COLOR_ROTATION = 360
 
 const generateColors = (hex, amount, rotation) =>
   Array.from({length: amount}, (_, i) =>
@@ -16,6 +13,10 @@ const stateReducer = (state, action) => {
   switch (action.type) {
     case 'SET_BASE_COLOR':
       return {...state, baseColor: action.payload.color}
+    case 'SET_COLOR_COUNT':
+      return {...state, count: action.payload.count}
+    case 'SET_COLOR_ROTATION':
+      return {...state, rotation: action.payload.rotation}
     default:
       return state
   }
@@ -23,8 +24,9 @@ const stateReducer = (state, action) => {
 
 export const ColorsContextProvider = ({children}) => {
   const [wheelOpts, dispatch] = useReducer(stateReducer, {
-    baseColor: '#0f0',
-    amount: 8,
+    baseColor: '#f0f',
+    count: 8,
+    rotation: 100,
   })
 
   const setBaseColor = color =>
@@ -35,15 +37,35 @@ export const ColorsContextProvider = ({children}) => {
       },
     })
 
+  const setColorAmount = count =>
+    dispatch({
+      type: 'SET_COLOR_COUNT',
+      payload: {
+        count,
+      },
+    })
+
+  const setColorRotation = rotation =>
+    dispatch({
+      type: 'SET_COLOR_ROTATION',
+      payload: {
+        rotation,
+      },
+    })
+
+  const colors = useMemo(
+    () =>
+      generateColors(wheelOpts.baseColor, wheelOpts.count, wheelOpts.rotation),
+    [wheelOpts],
+  )
+
   return (
     <ColorsContext.Provider
       value={{
-        colors: generateColors(
-          wheelOpts.baseColor,
-          COLOR_AMOUNT,
-          COLOR_ROTATION,
-        ),
+        colors,
         setBaseColor,
+        setColorAmount,
+        setColorRotation,
       }}
     >
       {children}
