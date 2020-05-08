@@ -3,15 +3,18 @@ import color from 'color'
 import {ColorsContext} from './context'
 
 // TODO: pass params as obj
-// TODO: handle error parsing color
 const generateColors = (hex, amount, rotation, lightness) =>
-  Array.from({length: amount}, (_, i) =>
-    color(hex)
-      .rotate(((i + i) / (amount + 1)) * rotation)
-      .lighten(lightness > 0.5 ? (lightness - 0.5) / 0.5 : 0)
-      .darken(lightness < 0.5 ? 1 - lightness / 0.5 : 0)
-      .hex(),
-  )
+  Array.from({length: amount}, (_, i) => {
+    try {
+      return color(hex)
+        .rotate(((i + i) / (amount + 1)) * rotation)
+        .lighten(lightness > 0.5 ? (lightness - 0.5) / 0.5 : 0)
+        .darken(lightness < 0.5 ? 1 - lightness / 0.5 : 0)
+        .hex()
+    } catch (e) {
+      return '#ccc'
+    }
+  })
 
 const stateReducer = (state, action) => {
   switch (action.type) {
@@ -83,6 +86,7 @@ export const ColorsContextProvider = ({children}) => {
     <ColorsContext.Provider
       value={{
         colors,
+        ...wheelOpts,
         setBaseColor,
         setColorAmount,
         setColorRotation,
