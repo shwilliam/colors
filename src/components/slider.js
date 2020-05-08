@@ -15,9 +15,9 @@ export const Slider = ({
   ...props
 }) => (
   <SliderInput min={min} max={max} step={step} className={className} {...props}>
-    <SliderTrack>
-      <SliderTrackHighlight />
-      <SliderHandle />
+    <SliderTrack className={`${className}__track`}>
+      <SliderTrackHighlight className={`${className}__track-highlight`} />
+      <SliderHandle className={`${className}__handle`} />
     </SliderTrack>
   </SliderInput>
 )
