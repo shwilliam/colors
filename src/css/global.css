@@ -124,8 +124,9 @@ body,
   width: 100%;
 }
 
-.wheel__circle {
+.wheel__circle svg {
   width: 60px;
+  height: 60px;
 }
 
 .options__form {
