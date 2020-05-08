@@ -3,18 +3,24 @@ import {useColors} from './hooks'
 import {Circle, Slider} from './components'
 
 export const App = () => {
-  const {colors, setBaseColor, setColorAmount, setColorRotation} = useColors(
-    '.wheel__circle',
-  )
+  const {
+    colors,
+    setBaseColor,
+    setColorAmount,
+    setColorRotation,
+    setColorLightness,
+  } = useColors('.wheel__circle')
   const [colorInput, setColorInput] = useState('#f0f')
   const [colorAmountInput, setColorAmountInput] = useState(8)
   const [colorRotationInput, setColorRotationInput] = useState(100)
+  const [colorLightnessInput, setColorLightnessInput] = useState(0.6)
 
   const handleColorSubmit = e => {
     e.preventDefault()
     setBaseColor(colorInput)
     setColorAmount(colorAmountInput)
     setColorRotation(colorRotationInput)
+    setColorLightness(colorLightnessInput)
   }
 
   const handleColorInputChange = e => setColorInput(e.target.value)
@@ -49,8 +55,21 @@ export const App = () => {
           <Slider
             min={1}
             max={180}
+            step={0.25}
             value={colorRotationInput}
             onChange={setColorRotationInput}
+          />
+        </label>
+
+        <label className="options__input-container">
+          <span className="options__label">Lightness:</span>
+          <Slider
+            step={0.01}
+            min={0.1}
+            max={1}
+            value={colorLightnessInput}
+            onChange={setColorLightnessInput}
+            placeholder="0.6"
           />
         </label>
 

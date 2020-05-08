@@ -2,10 +2,14 @@ import React, {useReducer, useMemo} from 'react'
 import color from 'color'
 import {ColorsContext} from './context'
 
-const generateColors = (hex, amount, rotation) =>
+// TODO: pass params as obj
+// TODO: handle error parsing color
+const generateColors = (hex, amount, rotation, lightness) =>
   Array.from({length: amount}, (_, i) =>
     color(hex)
       .rotate(((i + i) / (amount + 1)) * rotation)
+      .lighten(lightness > 0.5 ? (lightness - 0.5) / 0.5 : 0)
+      .darken(lightness < 0.5 ? 1 - lightness / 0.5 : 0)
       .string(),
   )
 
@@ -17,6 +21,8 @@ const stateReducer = (state, action) => {
       return {...state, count: action.payload.count}
     case 'SET_COLOR_ROTATION':
       return {...state, rotation: action.payload.rotation}
+    case 'SET_COLOR_LIGHTNESS':
+      return {...state, lightness: action.payload.lightness}
     default:
       return state
   }
@@ -27,6 +33,7 @@ export const ColorsContextProvider = ({children}) => {
     baseColor: '#f0f',
     count: 8,
     rotation: 100,
+    lightness: 0.6,
   })
 
   const setBaseColor = color =>
@@ -53,9 +60,22 @@ export const ColorsContextProvider = ({children}) => {
       },
     })
 
+  const setColorLightness = lightness =>
+    dispatch({
+      type: 'SET_COLOR_LIGHTNESS',
+      payload: {
+        lightness,
+      },
+    })
+
   const colors = useMemo(
     () =>
-      generateColors(wheelOpts.baseColor, wheelOpts.count, wheelOpts.rotation),
+      generateColors(
+        wheelOpts.baseColor,
+        wheelOpts.count,
+        wheelOpts.rotation,
+        wheelOpts.lightness,
+      ),
     [wheelOpts],
   )
 
@@ -66,6 +86,7 @@ export const ColorsContextProvider = ({children}) => {
         setBaseColor,
         setColorAmount,
         setColorRotation,
+        setColorLightness,
       }}
     >
       {children}
