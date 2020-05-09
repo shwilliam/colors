@@ -23,6 +23,7 @@
     "color": "^3.1.2",
     "copy-to-clipboard": "^3.3.1",
     "parcel-bundler": "^1.12.4",
+    "ramda": "^0.27.0",
     "react": "^16.13.1",
     "react-color": "^2.18.1",
     "react-dom": "^16.13.1"
