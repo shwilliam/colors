@@ -10,7 +10,7 @@ export const Color = ({color}) => {
   // 4s is android's default duration for toasts
 
   return (
-    <>
+    <div className="color__container">
       <button
         onClick={isCopied ? noop : copy}
         className="button button--floating"
@@ -29,6 +29,6 @@ export const Color = ({color}) => {
           <Alert>{color} copied</Alert>
         </VisuallyHidden>
       )}
-    </>
+    </div>
   )
 }
