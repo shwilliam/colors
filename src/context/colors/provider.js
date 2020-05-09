@@ -3,11 +3,13 @@ import color from 'color'
 import {ColorsContext} from './context'
 
 // TODO: pass params as obj
-const generateColors = (hex, amount, rotation, lightness) =>
+const generateColors = (hex, amount, rotation, lightness, saturation) =>
   Array.from({length: amount}, (_, i) => {
     try {
       return color(hex)
         .rotate(((i + i) / (amount + 1)) * rotation)
+        .saturate(saturation > 0.5 ? (saturation - 0.5) / 0.5 : 0)
+        .desaturate(saturation < 0.5 ? 1 - saturation / 0.5 : 0)
         .lighten(lightness > 0.5 ? (lightness - 0.5) / 0.5 : 0)
         .darken(lightness < 0.5 ? 1 - lightness / 0.5 : 0)
         .hex()
@@ -26,6 +28,8 @@ const stateReducer = (state, action) => {
       return {...state, rotation: action.payload.rotation}
     case 'SET_COLOR_LIGHTNESS':
       return {...state, lightness: action.payload.lightness}
+    case 'SET_COLOR_SATURATION':
+      return {...state, saturation: action.payload.saturation}
     default:
       return state
   }
@@ -37,6 +41,7 @@ export const ColorsContextProvider = ({children}) => {
     count: 8,
     rotation: 100,
     lightness: 0.55,
+    saturation: 0.45,
   })
 
   const setBaseColor = color =>
@@ -71,6 +76,14 @@ export const ColorsContextProvider = ({children}) => {
       },
     })
 
+  const setColorSaturation = saturation =>
+    dispatch({
+      type: 'SET_COLOR_SATURATION',
+      payload: {
+        saturation,
+      },
+    })
+
   const colors = useMemo(
     () =>
       generateColors(
@@ -78,6 +91,7 @@ export const ColorsContextProvider = ({children}) => {
         wheelOpts.count,
         wheelOpts.rotation,
         wheelOpts.lightness,
+        wheelOpts.saturation,
       ),
     [wheelOpts],
   )
@@ -91,6 +105,7 @@ export const ColorsContextProvider = ({children}) => {
         setColorAmount,
         setColorRotation,
         setColorLightness,
+        setColorSaturation,
       }}
     >
       {children}

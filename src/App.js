@@ -12,10 +12,12 @@ export const App = () => {
     count,
     rotation,
     lightness,
+    saturation,
     setBaseColor,
     setColorAmount,
     setColorRotation,
     setColorLightness,
+    setColorSaturation,
   } = useColors('.wheel__circle')
 
   const handleColorInputChange = e => setBaseColor(e.target.value)
@@ -72,11 +74,25 @@ export const App = () => {
 
           <label className="options__input-container">
             <div className="options__label-container">
-              <span className="options__label">Rotation</span>
-              <span className="options__label-value">{rotation}</span>
+              <span className="options__label">Saturation</span>
+              <span className="options__label-value">{saturation}</span>
             </div>
             <Slider
-              min={1}
+              min={0}
+              max={1}
+              step={0.05}
+              value={saturation}
+              onChange={setColorSaturation}
+            />
+          </label>
+
+          <label className="options__input-container">
+            <div className="options__label-container">
+              <span className="options__label">Rotation</span>
+              <span className="options__label-value">{rotation * 2}</span>
+            </div>
+            <Slider
+              min={0.5}
               max={180}
               value={rotation}
               onChange={setColorRotation}

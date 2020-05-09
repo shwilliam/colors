@@ -14,9 +14,11 @@ export const useColors = circleSelector => {
     count,
     rotation,
     lightness,
+    saturation,
     setColorAmount,
     setColorRotation,
     setColorLightness,
+    setColorSaturation,
   } = useContext(ColorsContext)
 
   // wheel layout
@@ -48,8 +50,10 @@ export const useColors = circleSelector => {
     count,
     rotation,
     lightness,
+    saturation,
     setColorAmount,
     setColorRotation,
     setColorLightness,
+    setColorSaturation,
   }
 }
