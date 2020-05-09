@@ -33,10 +33,10 @@ const stateReducer = (state, action) => {
 
 export const ColorsContextProvider = ({children}) => {
   const [wheelOpts, dispatch] = useReducer(stateReducer, {
-    baseColor: '#ccccff',
+    baseColor: '#22f',
     count: 8,
     rotation: 100,
-    lightness: 0.37,
+    lightness: 0.55,
   })
 
   const setBaseColor = color =>
