@@ -7,7 +7,6 @@ import {useWindowDimensions} from './index'
 const WHEEL_CIRCLE_SIZE = 60
 
 export const useColors = circleSelector => {
-  const {width} = useWindowDimensions()
   const {
     colors,
     setBaseColor,
@@ -31,18 +30,16 @@ export const useColors = circleSelector => {
 
     const increase = (Math.PI * 2) / elems.length
 
-    let angleOffset = -45
+    let angleOffset = -Math.PI / 2
     elems.forEach(el => {
-      const x =
-        100 * Math.cos(angleOffset) +
-        (width - (width > 799 ? 500 : 0) - WHEEL_CIRCLE_SIZE) / 2
+      const x = 100 * Math.cos(angleOffset)
       const y = 100 * Math.sin(angleOffset) - 50
       el.style.position = 'absolute'
       el.style.left = x + 'px'
       el.style.top = y + 'px'
       angleOffset += increase
     })
-  }, [colors, width])
+  }, [colors])
 
   return {
     colors,

@@ -15,9 +15,12 @@ body,
   background-color: var(--color__bg);
   color: var(--color__font);
   height: 100%;
+  overflow-x: hidden;
 }
 
 .site {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -27,7 +30,7 @@ body,
   text-align: center;
   font-size: 1.3rem;
   letter-spacing: 1px;
-  padding-top: 30px;
+  padding-top: 20px;
   padding-bottom: 10px;
 }
 
@@ -109,6 +112,8 @@ body,
 .wheel__container {
   position: relative;
   top: 20px;
+  left: 50%;
+  transform: translateX(-32px);
   min-height: 280px;
   flex-basis: 100%;
   display: flex;
@@ -207,7 +212,7 @@ body,
 
 @media only screen and (min-width: 400px) {
   .site__header {
-    padding-top: 40px;
+    padding-top: 30px;
     padding-bottom: 0;
   }
 }
@@ -217,13 +222,13 @@ body,
     flex-direction: row-reverse;
     align-items: center;
     min-height: 400px;
+    padding: 0 90px;
   }
 
   .options__form {
+    flex-basis: 50%;
     position: relative;
     top: -15px;
-    width: 500px;
-    margin: 0 20px 0 calc(15% + 20px);
   }
 
   .slider__handle {
