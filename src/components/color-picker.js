@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
+import {not, prop} from 'ramda'
 import {SliderPicker} from 'react-color'
 
 export const ColorPicker = ({color, onChange, className}) => {
   const [isOpen, setIsOpen] = useState(false)
-  const toggleIsOpen = () => setIsOpen(s => !s)
+  const toggleIsOpen = () => setIsOpen(not)
 
-  const handleChange = color => onChange(color.hex)
+  const handleChange = color => onChange(prop('hex', color))
 
   return (
     <>

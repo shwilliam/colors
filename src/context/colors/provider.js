@@ -1,6 +1,7 @@
-import React, {useReducer, useMemo} from 'react'
+import React, {useMemo, useReducer} from 'react'
 import color from 'color'
 import {ColorsContext} from './context'
+import {reducer} from './reducer'
 
 // TODO: pass params as obj
 const generateColors = (hex, amount, rotation, lightness, saturation) =>
@@ -18,25 +19,8 @@ const generateColors = (hex, amount, rotation, lightness, saturation) =>
     }
   })
 
-const stateReducer = (state, action) => {
-  switch (action.type) {
-    case 'SET_BASE_COLOR':
-      return {...state, baseColor: action.payload.color}
-    case 'SET_COLOR_COUNT':
-      return {...state, count: action.payload.count}
-    case 'SET_COLOR_ROTATION':
-      return {...state, rotation: action.payload.rotation}
-    case 'SET_COLOR_LIGHTNESS':
-      return {...state, lightness: action.payload.lightness}
-    case 'SET_COLOR_SATURATION':
-      return {...state, saturation: action.payload.saturation}
-    default:
-      return state
-  }
-}
-
 export const ColorsContextProvider = ({children}) => {
-  const [wheelOpts, dispatch] = useReducer(stateReducer, {
+  const [wheelOpts, dispatch] = useReducer(reducer, {
     baseColor: '#22f',
     count: 8,
     rotation: 100,

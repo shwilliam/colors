@@ -1,4 +1,5 @@
 import {useContext, useLayoutEffect} from 'react'
+import {isEmpty} from 'ramda'
 import {ColorsContext} from '../context'
 import {useWindowDimensions} from './index'
 
@@ -26,7 +27,7 @@ export const useColors = circleSelector => {
   useLayoutEffect(() => {
     const elems = [...document.querySelectorAll(circleSelector)]
 
-    if (!elems.length) return
+    if (isEmpty(elems)) return
 
     const increase = (Math.PI * 2) / elems.length
 
